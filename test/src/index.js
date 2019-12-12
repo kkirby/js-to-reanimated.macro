@@ -12,7 +12,7 @@ re(() => {
 		this.prevDragX = 0;
 		this.transX = () => {
 			if(defined(this.transX)){
-				if(clockRunning(this.clock) == 0){
+				if(clockRunning(this.clock) === 0){
 					this.animatedState.finished = 0;
 					this.animatedState.velocity = this.dragVX;
 					this.animatedState.position = this.transX;

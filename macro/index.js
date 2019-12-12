@@ -170,6 +170,8 @@ const binaryOperators = {
 	'**': 'pow',
 	'%': 'mod',
 	'==': 'eq',
-	'!=': 'neq'
+	'===': 'eq',
+	'!=': 'neq',
+	'!==': 'neq'
 	
 }

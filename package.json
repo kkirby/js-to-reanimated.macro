@@ -10,17 +10,20 @@
   "scripts": {
     "compile-test": "babel ./test/src/index.js --out-file ./test/out/index.js"
   },
-  "keywords": ["babel-plugin-macros","reanimated"],
+  "keywords": [
+    "babel-plugin-macros",
+    "reanimated"
+  ],
   "author": "Kyle Kirbatski",
   "license": "unlicense",
   "devDependencies": {
     "@babel/cli": "^7.7.5",
     "@babel/core": "^7.7.5",
     "@babel/preset-env": "^7.7.6",
-	"@babel/plugin-proposal-class-properties": "^7.7.4",
-	"core-js": "^3.5.0"
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "core-js": "^3.5.0"
   },
   "dependencies": {
-	"babel-plugin-macros": "^2.8.0"
+    "babel-plugin-macros": "^2.8.0"
   }
 }
