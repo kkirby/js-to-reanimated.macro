@@ -1,6 +1,6 @@
 {
   "name": "@kkirbatski/js-to-reanimated.macro",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "repository": {
     "type": "git",
     "url": "https://github.com/kkirby/js-to-reanimated.macro.git"
