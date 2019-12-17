@@ -1,6 +1,8 @@
 import re from '../../macro';
 import Animated from 'react-native-reanimated';
 
+re((distX / (endTime - startTime)) * 1000); 
+
 re(() => {
 	if(this.gestureState == State.ACTIVE){
 		stopClock(this.clock);
