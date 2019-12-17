@@ -49,7 +49,7 @@ const createHelper = (argumentPath,state,babel,libraryIdentifier) => {
 					LIBRARY: libraryIdentifier,
 					METHOD: 'block',
 					ARGS: handlePath(path.get('body'))
-				});
+				}).expression;
 			}
 			
 			return handlePath(path.get('body'));
@@ -86,7 +86,7 @@ const createHelper = (argumentPath,state,babel,libraryIdentifier) => {
 				METHOD: 'set',
 				LEFT_EXPRESSION: path.node.left,
 				RIGHT_EXPRESSION: path.node.right,
-			});
+			}).expression;
 		},
 		BinaryExpression(path) {
 			if(binaryOperators[path.node.operator] == null){
@@ -97,7 +97,7 @@ const createHelper = (argumentPath,state,babel,libraryIdentifier) => {
 				METHOD: babel.types.identifier(binaryOperators[path.node.operator]),
 				LEFT_EXPRESSION: path.node.left,
 				RIGHT_EXPRESSION: path.node.right,
-			});
+			}).expression;
 		},
 		CallExpression(path) {
 			if (path.node.callee.type === 'Identifier') {
@@ -105,7 +105,7 @@ const createHelper = (argumentPath,state,babel,libraryIdentifier) => {
 					LIBRARY: libraryIdentifier,
 					METHOD: babel.types.identifier(path.node.callee.name),
 					ARGUMENTS: path.node.arguments,
-				});
+				}).expression;
 			}
 		},
 		UnaryExpression(path) {
@@ -116,7 +116,7 @@ const createHelper = (argumentPath,state,babel,libraryIdentifier) => {
 					METHOD: babel.types.identifier('multiply'),
 					ARGUMENT: path.node.argument,
 					ARGUMENT2: '-1',
-				});
+				}).expression;
 			}
 		},
 		LogicalExpression(path) {
@@ -128,7 +128,7 @@ const createHelper = (argumentPath,state,babel,libraryIdentifier) => {
 				METHOD: babel.types.identifier(logicOperators[path.node.operator]),
 				LEFT: path.node.left,
 				RIGHT: path.node.right
-			});
+			}).expression;
 		},
 		FunctionExpression(path){
 			return path.node.expression;
