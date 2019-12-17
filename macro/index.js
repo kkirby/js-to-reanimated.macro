@@ -37,7 +37,7 @@ function reanimatedMacro({ references, state, babel, config}) {
 				}.`,
 			)
 		}
-	})
+	});
 }
 
 
@@ -109,7 +109,7 @@ const createHelper = (argumentPath,state,babel,libraryIdentifier) => {
 			}
 		},
 		UnaryExpression(path) {
-			if (path.node.operator === '-') {
+			if (path.node.operator === '-' && path.node.argument.type !== 'NumericLiteral') {
 				// for unary minus operator: -var
 				return babel.template('LIBRARY.METHOD(ARGUMENT, ARGUMENT2)')({
 					LIBRARY: libraryIdentifier,
@@ -119,8 +119,18 @@ const createHelper = (argumentPath,state,babel,libraryIdentifier) => {
 				});
 			}
 		},
+		LogicalExpression(path) {
+			if(logicOperators[path.node.operator] == null){
+				throw new Error('Operator is not defined: ' + path.node.operator);
+			}
+			return babel.template('LIBRARY.METHOD(LEFT,RIGHT)')({
+				LIBRARY: libraryIdentifier,
+				METHOD: babel.types.identifier(logicOperators[path.node.operator]),
+				LEFT: path.node.left,
+				RIGHT: path.node.right
+			});
+		},
 		FunctionExpression(path){
-			console.log(path);
 			return path.node.expression;
 		}
 	};
@@ -162,6 +172,11 @@ function genericReplace(argumentPath, state, babel, libraryIdentifier) {
 	traverse(argumentPath);
 }
 
+const logicOperators = {
+	'&&': 'and',
+	'||': 'or'
+};
+
 const binaryOperators = {
 	'+': 'add',
 	'-': 'sub',
@@ -172,6 +187,5 @@ const binaryOperators = {
 	'==': 'eq',
 	'===': 'eq',
 	'!=': 'neq',
-	'!==': 'neq'
-	
-}
+	'!==': 'neq',
+};

@@ -8,7 +8,7 @@ re(() => {
 		this.prevDragX = this.dragX;
 		this.transX;
 	}
-	else if(this.gestureState != -1){
+	else if(this.gestureState != -1 && this.gestureState != 12 || this.gestureState == 5){
 		this.prevDragX = 0;
 		this.transX = () => {
 			if(defined(this.transX)){
