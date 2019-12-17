@@ -188,4 +188,8 @@ const binaryOperators = {
 	'===': 'eq',
 	'!=': 'neq',
 	'!==': 'neq',
+	'>': 'greaterThan',
+	'>=': 'greaterOrEq',
+	'<': 'lessThan',
+	'<=': 'lessOrEq',
 };
