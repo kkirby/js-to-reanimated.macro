@@ -1,6 +1,10 @@
 import re from '../../macro';
 import Animated from 'react-native-reanimated';
 
+let a = () => null;
+re(a() * 12);
+re(startClock());
+
 re((distX / (endTime - startTime)) * 1000); 
 
 re(() => {

@@ -100,10 +100,11 @@ const createHelper = (argumentPath,state,babel,libraryIdentifier) => {
 			}).expression;
 		},
 		CallExpression(path) {
-			if (path.node.callee.type === 'Identifier') {
+			const callee = path.node.callee;
+			if (callee.type === 'Identifier' && !path.scope.hasBinding(callee.name)) {
 				return babel.template('LIBRARY.METHOD(ARGUMENTS)')({
 					LIBRARY: libraryIdentifier,
-					METHOD: babel.types.identifier(path.node.callee.name),
+					METHOD: babel.types.identifier(callee.name),
 					ARGUMENTS: path.node.arguments,
 				}).expression;
 			}
